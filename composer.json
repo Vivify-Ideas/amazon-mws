@@ -1,10 +1,23 @@
 {
-    "name": "vivifyideas/amazon-mws",
-    "authors": [
-        {
-            "name": "Goran Prijic",
-            "email": "goran@vivifyideas.com"
-        }
-    ],
-    "require": {}
+  "name": "vivifyideas/amazon-mws",
+  "authors": [
+    {
+      "name": "Goran Prijic",
+      "email": "goran@vivifyideas.com"
+    }
+  ],
+  "keywords": [
+    "amazon",
+    "mws",
+    "api",
+    "products"
+  ],
+  "require": {
+    "php": ">=5.3.3"
+  },
+  "autoload": {
+    "classmap": [
+      "src/"
+    ]
+  }
 }
