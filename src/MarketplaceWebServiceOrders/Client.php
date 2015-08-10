@@ -38,6 +38,8 @@ class MarketplaceWebServiceOrders_Client implements MarketplaceWebServiceOrders_
     /** @var string */
     private  $_awsSecretAccessKey = null;
 
+    private $lastResponse;
+
     /** @var array */
     private  $_config = array ('ServiceURL' => null,
                                'UserAgent' => 'MarketplaceWebServiceOrders PHP5 Library',
@@ -165,7 +167,7 @@ class MarketplaceWebServiceOrders_Client implements MarketplaceWebServiceOrders_
         }
         $parameters = $request->toQueryParameterArray();
         $parameters['Action'] = 'ListOrderItems';
-        $httpResponse = $this->_invoke($parameters);
+        $httpResponse = $this->lastResponse = $this->_invoke($parameters);
 
         // // require_once (dirname(__FILE__) . '/Model/ListOrderItemsResponse.php');
         $response = MarketplaceWebServiceOrders_Model_ListOrderItemsResponse::fromXML($httpResponse['ResponseBody']);
@@ -215,7 +217,7 @@ class MarketplaceWebServiceOrders_Client implements MarketplaceWebServiceOrders_
         }
         $parameters = $request->toQueryParameterArray();
         $parameters['Action'] = 'ListOrderItemsByNextToken';
-        $httpResponse = $this->_invoke($parameters);
+        $httpResponse = $this->lastResponse = $this->_invoke($parameters);
 
         // // require_once (dirname(__FILE__) . '/Model/ListOrderItemsByNextTokenResponse.php');
         $response = MarketplaceWebServiceOrders_Model_ListOrderItemsByNextTokenResponse::fromXML($httpResponse['ResponseBody']);
@@ -354,6 +356,11 @@ class MarketplaceWebServiceOrders_Client implements MarketplaceWebServiceOrders_
         return $response;
     }
 
+
+    public function getLastResponse()
+    {
+        return $this->lastResponse;
+    }
 
     /**
      * Convert ListOrdersByNextTokenRequest to name value pairs
